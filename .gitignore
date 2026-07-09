@@ -1,0 +1,116 @@
+/node_modules
+/uploads
+.env
+.env.local
+.env.*.local
+
+/build
+/node_modules
+.env
+.env.local
+.env.production.local
+
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# Testing
+/coverage
+/.nyc_output
+
+# Production
+/build
+/dist
+/.next
+/out
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# OS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Cache
+.cache/
+.parcel-cache/
+.eslintcache
+.node_repl_history
+
+# TypeScript
+*.tsbuildinfo
+*.tscache
+
+# Database files
+*.sqlite
+*.sqlite-journal
+*.db
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+
+# Misc
+.tern-port
+.lock-wscript
+.yarn-integrity
+.pnpm-debug.log
+yarn-debug.log
+yarn-error.log
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# MERN-specific
+client/build/
+client/node_modules/
+server/node_modules/
+client/.env
+server/.env
+
+# Server uploaded files
+/server/uploads/
+/server/public/uploads/
+/server/temp/
+
+# Optional: If using MongoDB local storage
+/data/
+/db/
+
+# Optional: If using JWT secrets or certificates
+*.pem
+*.key
+*.cert
+*.crt

@@ -6,8 +6,8 @@ import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
 import connectDB from './config/database.js';
-import authRoutes from './routes/auth.routes.js';
-import { errorHandler } from './middleware/error.middleware.js';
+import authRoutes from './routes/auth.route.js';
+import { errorHandler } from './middlewares/error.middleware.js';
 
 dotenv.config();
 

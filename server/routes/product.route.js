@@ -3,7 +3,7 @@ import express from 'express';
 import { 
     verifyTokenMiddleware, 
     requireRole 
-} from '../middleware/auth.middleware.js';
+} from '../middlewares/auth.middleware.js';
 
 const router = express.Router();
 
