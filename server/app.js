@@ -12,6 +12,7 @@ import { errorHandler } from './middlewares/error.middleware.js';
 //routes
 import productRoutes from './routes/product.route.js';
 import dashboardRoutes from './routes/dashboard.route.js';
+import orderRoutes from './routes/order.route.js';
 
 dotenv.config();
 
@@ -47,6 +48,7 @@ app.use(cookieParser());
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+app.use('/api/orders', orderRoutes);
 
 // Health Check
 app.get('/health', (req, res) => {
