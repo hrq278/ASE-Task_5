@@ -84,7 +84,8 @@ const SupplierSchema = new mongoose.Schema({
 });
 
 // Indexes
-SupplierSchema.index({ companyName: 1 });
-SupplierSchema.index({ email: 1 });
+SupplierSchema.index(true);
 
-module.exports = mongoose.model('Supplier', SupplierSchema);
+const Supplier = mongoose.model('Supplier', SupplierSchema);
+
+export default Supplier;

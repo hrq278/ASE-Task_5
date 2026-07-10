@@ -13,11 +13,11 @@ import {
 import {
   verifyTokenMiddleware,
   requireRole
-} from '../middleware/auth.middleware.js';
+} from '../middlewares/auth.middleware.js';
 import {
   uploadProductImage,
   handleMulterError
-} from '../middleware/upload.middleware.js';
+} from '../middlewares/upload.middleware.js';
 
 const router = express.Router();
 

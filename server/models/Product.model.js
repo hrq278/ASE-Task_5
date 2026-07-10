@@ -132,13 +132,7 @@ ProductSchema.virtual('profitMargin').get(function() {
   return ((this.sellingPrice - this.purchasePrice) / this.purchasePrice * 100);
 });
 
-// Indexes for performance
-ProductSchema.index({ productName: 'text' });
-ProductSchema.index({ category: 1 });
-ProductSchema.index({ supplier: 1 });
-ProductSchema.index({ productCode: 1 });
-ProductSchema.index({ quantity: 1 });
-ProductSchema.index({ isActive: 1 });
+
 
 const Product = mongoose.model('Product', ProductSchema);
 export default Product;

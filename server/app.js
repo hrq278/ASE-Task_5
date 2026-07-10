@@ -5,7 +5,6 @@ import helmet from 'helmet';
 import cookieParser from 'cookie-parser';
 import rateLimit from 'express-rate-limit';
 import dotenv from 'dotenv';
-import connectDB from './config/database.js';
 import authRoutes from './routes/auth.route.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 
@@ -17,7 +16,7 @@ import orderRoutes from './routes/order.route.js';
 dotenv.config();
 
 // Connect to Database
-connectDB();
+
 
 const app = express();
 
