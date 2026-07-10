@@ -297,12 +297,7 @@ OrderSchema.virtual('age').get(function() {
   return Math.floor((Date.now() - this.createdAt.getTime()) / (1000 * 60 * 60 * 24));
 });
 
-// Indexes
-OrderSchema.index({ orderNumber: 1 });
-OrderSchema.index({ customerEmail: 1 });
-OrderSchema.index({ status: 1 });
-OrderSchema.index({ orderDate: -1 });
-OrderSchema.index({ 'items.product': 1 });
+
 
 const Order = mongoose.model('Order', OrderSchema);
 export default Order;

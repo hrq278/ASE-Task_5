@@ -1,11 +1,10 @@
-// models/index.js
-const User = require('./User.model');
-const Product = require('./Product.model');
-const Supplier = require('./Supplier.model');
-const Order = require('./Order.model');
-const Category = require('./Category.model');
+import User from './User.model.js';
+import Product from './Product.model.js';
+import Supplier from './Supplier.model.js';
+import Order from './Order.model.js';
+import Category from './Category.model.js';
 
-module.exports = {
+export {
     User,
     Product,
     Supplier,

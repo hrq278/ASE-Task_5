@@ -46,6 +46,8 @@ CategorySchema.virtual('productCount', {
 });
 
 // Index
-CategorySchema.index({ name: 1 });
+CategorySchema.index(true);
 
-module.exports = mongoose.model('Category', CategorySchema);
+const Category = mongoose.model('Category', CategorySchema);
+
+export default Category;
