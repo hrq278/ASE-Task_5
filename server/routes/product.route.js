@@ -1,49 +1,73 @@
-// routes/product.routes.js (Example)
+// routes/product.routes.js
 import express from 'express';
-import { 
-    verifyTokenMiddleware, 
-    requireRole 
-} from '../middlewares/auth.middleware.js';
+import {
+  createProduct,
+  getProducts,
+  getProductById,
+  updateProduct,
+  deleteProduct,
+  hardDeleteProduct,
+  updateStock,
+  bulkCreateProducts
+} from '../controllers/product.controller.js';
+import {
+  verifyTokenMiddleware,
+  requireRole
+} from '../middleware/auth.middleware.js';
+import {
+  uploadProductImage,
+  handleMulterError
+} from '../middleware/upload.middleware.js';
 
 const router = express.Router();
 
-// Example: Admin-only route (User Management)
-router.get('/admin/users', 
-    verifyTokenMiddleware, 
-    requireRole('admin'), 
-    (req, res) => {
-        res.json({ 
-            success: true, 
-            message: 'Admin-only route accessed',
-            user: req.user 
-        });
-    }
+// All product routes require authentication
+router.use(verifyTokenMiddleware);
+
+// Public routes (accessible to all authenticated users)
+router.get('/', getProducts);
+router.get('/:id', getProductById);
+
+// Admin and Manager only routes
+router.post(
+  '/',
+  requireRole('admin', 'manager'),
+  uploadProductImage,
+  handleMulterError,
+  createProduct
 );
 
-// Example: Manager+Admin route (Product Management)
-router.post('/products', 
-    verifyTokenMiddleware, 
-    requireRole('admin', 'manager'), 
-    (req, res) => {
-        res.json({ 
-            success: true, 
-            message: 'Product created by manager/admin',
-            user: req.user 
-        });
-    }
+router.put(
+  '/:id',
+  requireRole('admin', 'manager'),
+  uploadProductImage,
+  handleMulterError,
+  updateProduct
 );
 
-// Example: Employee route (Orders - read-mostly)
-router.get('/orders', 
-    verifyTokenMiddleware, 
-    requireRole('admin', 'manager', 'employee'), 
-    (req, res) => {
-        res.json({ 
-            success: true, 
-            message: 'Orders accessed by employee',
-            user: req.user 
-        });
-    }
+router.patch(
+  '/:id/stock',
+  requireRole('admin', 'manager'),
+  updateStock
+);
+
+// Admin only routes
+router.patch(
+  '/:id/deactivate',
+  requireRole('admin'),
+  deleteProduct
+);
+
+router.delete(
+  '/:id/permanent',
+  requireRole('admin'),
+  hardDeleteProduct
+);
+
+router.post(
+  '/bulk',
+  requireRole('admin', 'manager'),
+  bulkCreateProducts
 );
 
 export default router;
