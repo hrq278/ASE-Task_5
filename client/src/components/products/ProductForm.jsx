@@ -17,8 +17,8 @@ import {
   Typography,
   CircularProgress
 } from '@mui/material';
-import { productService } from '../../services/product.service';
-import { validateProduct } from '../../utils/validators';
+import { productService } from '../../services/product.service.js';
+import { validateProduct } from '../../utils/validators.js';
 
 const ProductForm = ({ open, onClose, product, onSuccess, categories, suppliers }) => {
   const isEdit = !!product;

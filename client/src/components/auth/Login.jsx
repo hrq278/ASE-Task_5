@@ -69,7 +69,7 @@ const Login = () => {
           <CardContent sx={{ p: 4 }}>
             <Box sx={{ textAlign: 'center', mb: 4 }}>
               <img 
-                src="/logo.png" 
+                src="/ASElogo.png" 
                 alt="Allied Software Engineers" 
                 style={{ 
                   maxWidth: '200px', 
