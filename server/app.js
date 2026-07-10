@@ -32,11 +32,7 @@ const limiter = rateLimit({
 app.use('/api', limiter);
 
 // CORS Configuration
-app.use(cors({
-    origin: process.env.CLIENT_URL || 'http://localhost:3000',
-    credentials: true,
-    optionsSuccessStatus: 200
-}));
+app.use(cors());
 
 // Body Parsers
 app.use(express.json({ limit: '10mb' }));
