@@ -53,14 +53,16 @@ const UserSchema = new mongoose.Schema({
 });
 
 // Pre-save middleware to hash password
-UserSchema.pre('save', async function(next) {
+UserSchema.pre('save', async function () {
     if (!this.isModified('password')) {
-        return next();
+        return;
     }
-    
-    const salt = await bcrypt.genSalt(parseInt(process.env.BCRYPT_ROUNDS) || 10);
+
+    const salt = await bcrypt.genSalt(
+        parseInt(process.env.BCRYPT_ROUNDS) || 10
+    );
+
     this.password = await bcrypt.hash(this.password, salt);
-    next();
 });
 
 // Method to compare password
