@@ -9,6 +9,10 @@ import connectDB from './config/database.js';
 import authRoutes from './routes/auth.route.js';
 import { errorHandler } from './middlewares/error.middleware.js';
 
+//routes
+import productRoutes from './routes/product.route.js';
+import dashboardRoutes from './routes/dashboard.route.js';
+
 dotenv.config();
 
 // Connect to Database
@@ -42,6 +46,7 @@ app.use(cookieParser());
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Health Check
 app.get('/health', (req, res) => {
