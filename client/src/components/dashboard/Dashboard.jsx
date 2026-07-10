@@ -1,85 +1,73 @@
 // client/src/components/dashboard/Dashboard.jsx
 import React from 'react';
-import { 
-  Box, 
-  Grid, 
-  Container, 
-  CircularProgress, 
-  Alert, 
-  Typography 
-} from '@mui/material';
-import { useDashboard } from '../../hooks/useDashboard';
-import DashboardCards from './DashboardCards';
-import StockStatusChart from './StockStatusChart';
-import CategoryDistributionChart from './CategoryDistributionChart';
-import MonthlyTrendsChart from './MonthlyTrendsChart';
-import TopSellingProducts from './TopSellingProducts';
-import RecentOrders from './RecentOrders';
-import StockAlertsList from './StockAlertsList';
+import { Box, Grid, Card, CardContent, Typography, Paper } from '@mui/material';
+import {
+  ShoppingCart as ProductIcon,
+  Warning as WarningIcon,
+  Inventory as InventoryIcon,
+  Store as StoreIcon,
+  Receipt as OrderIcon,
+  AttachMoney as MoneyIcon
+} from '@mui/icons-material';
 
 const Dashboard = () => {
-  const { loading, error, data, refresh } = useDashboard();
+  const stats = {
+    totalProducts: 0,
+    lowStockCount: 0,
+    outOfStockCount: 0,
+    totalSuppliers: 0,
+    totalOrders: 0,
+    inventoryValue: 0
+  };
 
-  if (loading && !data.summary.totalProducts) {
-    return (
-      <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
-        <CircularProgress />
-      </Box>
-    );
-  }
-
-  if (error) {
-    return (
-      <Box sx={{ p: 3 }}>
-        <Alert severity="error" sx={{ mb: 2 }}>
-          {error}
-        </Alert>
-        <Typography variant="body1">
-          Please try refreshing the page or contact support.
-        </Typography>
-      </Box>
-    );
-  }
+  const cards = [
+    { title: 'Total Products', value: stats.totalProducts, icon: <ProductIcon />, color: '#1976d2' },
+    { title: 'Low Stock', value: stats.lowStockCount, icon: <WarningIcon />, color: '#ed6c02' },
+    { title: 'Out of Stock', value: stats.outOfStockCount, icon: <InventoryIcon />, color: '#d32f2f' },
+    { title: 'Suppliers', value: stats.totalSuppliers, icon: <StoreIcon />, color: '#2e7d32' },
+    { title: 'Orders', value: stats.totalOrders, icon: <OrderIcon />, color: '#6f42c1' },
+    { title: 'Inventory Value', value: `$${stats.inventoryValue}`, icon: <MoneyIcon />, color: '#00bcd4' }
+  ];
 
   return (
-    <Container maxWidth="xl" sx={{ py: 3 }}>
-      <DashboardCards data={data} loading={loading} onRefresh={refresh} />
+    <Box>
+      <Typography variant="h4" gutterBottom>
+        Dashboard
+      </Typography>
 
       <Grid container spacing={3}>
-        {/* Stock Status Pie Chart */}
-        <Grid item xs={12} md={6}>
-          <StockStatusChart data={data} />
-        </Grid>
-
-        {/* Category Distribution Bar Chart */}
-        <Grid item xs={12} md={6}>
-          <CategoryDistributionChart data={data} />
-        </Grid>
-
-        {/* Monthly Trends */}
-        <Grid item xs={12}>
-          <MonthlyTrendsChart data={data} />
-        </Grid>
-
-        {/* Top Selling Products */}
-        <Grid item xs={12} md={6}>
-          <TopSellingProducts products={data.topSellingProducts} />
-        </Grid>
-
-        {/* Stock Alerts */}
-        <Grid item xs={12} md={6}>
-          <StockAlertsList 
-            lowStock={data.lowStockProducts}
-            outOfStock={data.outOfStockProducts}
-          />
-        </Grid>
-
-        {/* Recent Orders */}
-        <Grid item xs={12}>
-          <RecentOrders orders={data.recentOrders} />
-        </Grid>
+        {cards.map((card, index) => (
+          <Grid item xs={12} sm={6} md={4} key={index}>
+            <Card sx={{ borderRadius: 0 }}>
+              <CardContent>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                  <Box>
+                    <Typography variant="body2" color="textSecondary">
+                      {card.title}
+                    </Typography>
+                    <Typography variant="h4" sx={{ fontWeight: 600 }}>
+                      {card.value}
+                    </Typography>
+                  </Box>
+                  <Box sx={{ color: card.color }}>
+                    {card.icon}
+                  </Box>
+                </Box>
+              </CardContent>
+            </Card>
+          </Grid>
+        ))}
       </Grid>
-    </Container>
+
+      <Paper sx={{ mt: 3, p: 3, borderRadius: 0 }}>
+        <Typography variant="h6" gutterBottom>
+          Recent Activity
+        </Typography>
+        <Typography variant="body2" color="textSecondary">
+          Dashboard content coming soon...
+        </Typography>
+      </Paper>
+    </Box>
   );
 };
 

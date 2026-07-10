@@ -2,16 +2,16 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-import { AuthProvider } from './context/AuthContext';
-import ProtectedRoute from './components/common/ProtectedRoute';
-import Layout from './components/common/Layout';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import Dashboard from './components/dashboard/Dashboard';
-import ProductList from './components/products/ProductList';
-import OrderList from './components/orders/OrderList';
-import OrderCreate from './components/orders/OrderCreate';
-import OrderDetail from './components/orders/OrderDetail';
+import { AuthProvider } from './context/AuthContext.jsx';
+import ProtectedRoute from './components/common/ProtectedRoute.jsx';
+import Layout from './components/common/Layout.jsx';
+import Login from './components/auth/Login.jsx';
+import Register from './components/auth/Register.jsx';
+import Dashboard from './components/dashboard/Dashboard.jsx';
+import ProductList from './components/products/ProductList.jsx';
+// import OrderList from './components/orders/OrderList';
+// import OrderCreate from './components/orders/OrderCreate';
+// import OrderDetail from './components/orders/OrderDetail';
 import './styles/global.css';
 
 const theme = createTheme({
@@ -74,17 +74,17 @@ function App() {
               } />
               <Route path="orders" element={
                 <ProtectedRoute>
-                  <OrderList />
+                  <div>Orders Page</div>
                 </ProtectedRoute>
               } />
               <Route path="orders/create" element={
                 <ProtectedRoute requiredRoles={['admin', 'manager']}>
-                  <OrderCreate />
+                  <div>Create Order Page</div>
                 </ProtectedRoute>
               } />
               <Route path="orders/:id" element={
                 <ProtectedRoute>
-                  <OrderDetail />
+                  <div>Order Detail Page</div>
                 </ProtectedRoute>
               } />
             </Route>
