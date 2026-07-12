@@ -15,7 +15,6 @@ A full-stack MERN application for managing products, suppliers, and customer ord
 - Role-based authentication (Admin, Manager, Employee)
 - Product management with auto-generated codes, image upload, and validation
 - Supplier management
-- Order management with automatic stock deduction and total calculation
 - Real-time inventory dashboard (totals, low stock, out of stock, inventory value)
 - Search, filters, and pagination across product and order views
 ## Folder Structure
